@@ -1,10 +1,22 @@
 ---
 title: "gp2"
-author: "Gino Assenmacher"
+author: "Gino Assenmacher, Nathan Koenig, Johanna Langemeyer, Lukas Resch, Ben Roemer"
 date: "2022-10-27"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+```
+
+```{r}
+
+spot10 <- read.csv("data-set-of-10s.csv")
+spot00 <- read.csv("data-set-of-00s.csv")
+spot90 <- read.csv("data-set-of-90s.csv")
+spot80 <- read.csv("data-set-of-80s.csv")
+spot70 <- read.csv("data-set-of-70s.csv")
+spot60 <- read.csv("data-set-of-60s.csv")
+
 ```
