@@ -12,11 +12,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 
-spot10 <- read.csv("data-set-of-10s.csv")
-spot00 <- read.csv("data-set-of-00s.csv")
-spot90 <- read.csv("data-set-of-90s.csv")
-spot80 <- read.csv("data-set-of-80s.csv")
-spot70 <- read.csv("data-set-of-70s.csv")
-spot60 <- read.csv("data-set-of-60s.csv")
+spot10 <- read.csv("dataset-of-10s.csv")
+spot00 <- read.csv("dataset-of-00s.csv")
+spot90 <- read.csv("dataset-of-90s.csv")
+spot80 <- read.csv("dataset-of-80s.csv")
+spot70 <- read.csv("dataset-of-70s.csv")
+spot60 <- read.csv("dataset-of-60s.csv")
 
 ```
