@@ -20,3 +20,13 @@ spot60 <- read.csv("dataset-of-60s.csv")
 
 ```
 
+```{r}
+
+model_10 <- glm(target ~ danceability + energy + key + loudness + mode + speechiness + acousticness +
+                         instrumentalness + liveness + valence + tempo + duration_ms + time_signature + 
+                         chorus_hit + sections, data = spot10, family = "binomial")
+summary(model_10)
+
+```
+
+
