@@ -18,6 +18,27 @@ spot80 <- read.csv("dataset-of-80s.csv")
 spot70 <- read.csv("dataset-of-70s.csv")
 spot60 <- read.csv("dataset-of-60s.csv")
 
+spot10$uri <- NULL
+spot00$uri <- NULL
+spot90$uri <- NULL
+spot80$uri <- NULL
+spot70$uri <- NULL
+spot60$uri <- NULL
+
+spot10$key <- as.factor(spot10$key)
+spot00$key <- as.factor(spot00$key)
+spot90$key <- as.factor(spot90$key)
+spot80$key <- as.factor(spot80$key)
+spot70$key <- as.factor(spot70$key)
+spot60$key <- as.factor(spot60$key)
+
+spot10$mode <- as.factor(spot10$mode)
+spot00$mode <- as.factor(spot00$mode)
+spot90$mode <- as.factor(spot90$mode)
+spot80$mode <- as.factor(spot80$mode)
+spot70$mode <- as.factor(spot70$mode)
+spot60$mode <- as.factor(spot60$mode)
+
 ```
 
 ```{r}
