@@ -8,7 +8,6 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-```
 
 ```{r}
 
@@ -18,5 +17,4 @@ spot90 <- read.csv("dataset-of-90s.csv")
 spot80 <- read.csv("dataset-of-80s.csv")
 spot70 <- read.csv("dataset-of-70s.csv")
 spot60 <- read.csv("dataset-of-60s.csv")
-
 ```
