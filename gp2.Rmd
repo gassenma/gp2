@@ -69,7 +69,6 @@ spot90$mode <- as.factor(spot90$mode)
 spot80$mode <- as.factor(spot80$mode)
 spot70$mode <- as.factor(spot70$mode)
 spot60$mode <- as.factor(spot60$mode)
-```
 
 spot10$decade <- as.factor(spot10$mode)
 spot00$decade <- as.factor(spot00$mode)
@@ -82,9 +81,11 @@ spotify <- rbind(spot10, spot00, spot90, spot80, spot70, spot60)
 
 ```
 
-
+<<<<<<< HEAD
 ## LOGISTIC REGRESSION
+=======
 ## Simple Regression Model
+>>>>>>> 77a1fbf53b317c594737959b666d6c11a7fc2e25
 
 ```{r}
 
@@ -96,7 +97,6 @@ summary(model_10)
 ```
 
 
-## KNN Model
 
 
 
@@ -107,7 +107,6 @@ summary(model_10)
 ```
 
 
-## ANN Model
 
 
 
@@ -121,9 +120,9 @@ summary(model_10)
 
 
 
+
 ## SVM
 
 ```{r}
 
 ```
-
