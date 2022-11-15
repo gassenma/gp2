@@ -70,6 +70,7 @@ spot70$mode <- as.factor(spot70$mode)
 spot60$mode <- as.factor(spot60$mode)
 ```
 
+
 ## Simple Regression Model
 
 ```{r}
@@ -81,3 +82,23 @@ summary(model_10)
 
 ```
 
+
+## KNN Model
+
+```{r}
+
+```
+
+
+## ANN Model
+
+```{r}
+
+```
+
+
+## SVM Model
+
+```{r}
+
+```
