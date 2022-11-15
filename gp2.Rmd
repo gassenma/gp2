@@ -79,50 +79,38 @@ spot60$decade <- as.factor("1960")
 
 spotify <- rbind(spot10, spot00, spot90, spot80, spot70, spot60)
 
-```
-
-<<<<<<< HEAD
-## LOGISTIC REGRESSION
-=======
-## Simple Regression Model
->>>>>>> 77a1fbf53b317c594737959b666d6c11a7fc2e25
-
-```{r}
-
-lmodel <- glm(target ~ danceability + energy + loudness + mode + speechiness + acousticness +
-                         instrumentalness + liveness + valence + tempo + duration_ms + time_signature + 
-                         chorus_hit + sections, data = spotify, family = "binomial")
-summary(lmodel)
+spotify$track <- NULL
+spotify$artist <- NULL
 
 ```
 
-
-
-
-
-## KNN
-
 ```{r}
 
-```
+set.seed(123)
+spotify_random <- spotify[sample(nrow(spotify)),]
+
+spotify_train <- spotify_random[1:(41106/2),] 
+
+spotify_test <- spotify_random[((41106/2)+1):nrow(spotify),]
 
 
+normalize <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x)))
+}
 
+spotify_train_dummy <- as.data.frame(model.matrix(~.-1,spotify_train))
+spotify_test_dummy <- as.data.frame(model.matrix(~.-1,spotify_test))
 
+spotify_train_norm <- as.data.frame(lapply(spotify_train_dummy, normalize))
+spotify_test_norm <- as.data.frame(lapply(spotify_test_dummy, normalize))
 
-
-## Decision Tree
-
-```{r}
-
-```
-
-
-
-
-
-## SVM
-
-```{r}
+write.csv(spotify, "C:/Users/gasse/Documents/School/to414/gp2/spotify.csv", row.names = FALSE)
+write.csv(spotify_random, "C:/Users/gasse/Documents/School/to414/gp2/spotify_random.csv", row.names = FALSE)
+write.csv(spotify_train, "C:/Users/gasse/Documents/School/to414/gp2/spotify_train.csv", row.names = FALSE)
+write.csv(spotify_test, "C:/Users/gasse/Documents/School/to414/gp2/spotify_test.csv", row.names = FALSE)
+write.csv(spotify_train_dummy, "C:/Users/gasse/Documents/School/to414/gp2/spotify_train_dummy.csv", row.names = FALSE)
+write.csv(spotify_test_dummy, "C:/Users/gasse/Documents/School/to414/gp2/spotify_test_dummy.csv", row.names = FALSE)
+write.csv(spotify_train_norm, "C:/Users/gasse/Documents/School/to414/gp2/spotify_train_norm.csv", row.names = FALSE)
+write.csv(spotify_test_norm, "C:/Users/gasse/Documents/School/to414/gp2/spotify_test_norm.csv", row.names = FALSE)
 
 ```

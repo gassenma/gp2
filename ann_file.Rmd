@@ -9,6 +9,20 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+
+spotify <- read.csv("spotify.csv")
+spotify_random <- read.csv("spotify_random.csv")
+spotify_train <- read.csv("spotify_train.csv")
+spotify_test <- read.csv("spotify_test.csv")
+spotify_train_dummy <- read.csv("spotify_train_dummy.csv")
+spotify_test_dummy <- read.csv("spotify_test_dummy.csv")
+spotify_train_norm <- read.csv("spotify_train_norm.csv")
+spotify_test_norm <- read.csv("spotify_test_norm.csv")
+
+```
+
+
 ## ANN MODEL
 
 ```{r}
