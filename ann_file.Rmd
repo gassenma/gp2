@@ -27,12 +27,12 @@ spotify_test_norm <- read.csv("spotify_test_norm.csv")
 
 ```{r}
 
-spotify_train <- tele_train_norm
-spotify_test <- tele_test_norm
+spotify_train_ann <- spotify_train_norm
+spotify_test_ann <- spotify_test_norm
 
 library(neuralnet)
   
-ann_model <- neuralnet(formula = yyes ~ ., data = tele_train_ann, hidden = 2)
+ann_model <- neuralnet(formula = target ~ ., data = spotify_train_ann, hidden = 2)
 
 tele_test_ann$extra <- tele_test_ann$yyes
 tele_test_ann$yyes <- NULL
