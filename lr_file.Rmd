@@ -1,0 +1,34 @@
+---
+title: "lr_file"
+author: "Gino Assenmacher"
+date: "2022-11-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+spotify <- read.csv("spotify.csv")
+spotify_random <- read.csv("spotify_random.csv")
+spotify_train <- read.csv("spotify_train.csv")
+spotify_test <- read.csv("spotify_test.csv")
+spotify_train_dummy <- read.csv("spotify_train_dummy.csv")
+spotify_test_dummy <- read.csv("spotify_test_dummy.csv")
+spotify_train_norm <- read.csv("spotify_train_norm.csv")
+spotify_test_norm <- read.csv("spotify_test_norm.csv")
+
+```
+
+
+```{r}
+
+lmodel <- glm(target ~ danceability + energy + loudness + mode + speechiness + acousticness +
+                         instrumentalness + liveness + valence + tempo + duration_ms + time_signature + 
+                         chorus_hit + sections, data = spotify, family = "binomial")
+summary(lmodel)
+
+```
+
