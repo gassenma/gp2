@@ -1,13 +1,44 @@
 ---
-title: "gp2"
+title: "Spotify Hit Predictor"
 author: "Gino Assenmacher, Nathan Koenig, Johanna Langemeyer, Lukas Resch, Ben Roemer"
 date: "2022-10-27"
-output: html_document
+output:
+  html_document: 
+    highlight: tango
+    theme: united
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+## About the dataset
+The dataset is called 'The Spotify Hit Predictor Dataset (1960-2019)' and consistes of features for tracks fetched using Spotify's web API. For the sake of the analysis we will focus on the hits from 2010-2019 as we believe that the factors that predict a hit song changed over time. Therefore, more recent data allows for better predictions.
+The variable that we are trying to predict is weather the song was a hit ('1') or a flop ('0'). This classification is determined by the following criteria for a flop:
+
+* The track must not appear in the 'hit' list of that decade.
+* The track's artist must not appear in the 'hit' list of that decade.
+* The track must belong to a genre that could be considered non-mainstream and / or avant-garde. 
+* The track's genre must not have a song in the 'hit' list.
+* The genre list for the particular decades are as follows:
+* The track must have 'US' as one of its markets.
+
+The dataset contains the following data:
+```{r echo = FALSE}
+spot10 <- read.csv("dataset-of-10s.csv")
+str(spot10)
+```
+The dataset can be found [here.](https://www.kaggle.com/datasets/theoverman/the-spotify-hit-predictor-dataset)
+
+## Business Case
+Large record labels are flooded by new artists and requests for releasing new songs. With this data we can build an algorithm that predicts weather a song will become a hit or not. By doing so, we can facilitate investment decision in e.g. marketing for certain song. To quantify this, we will use an estimate of the costs of marketing a song and on the other hand the returns a hit song can bring.
+
+## Cleaning the Dataset
+There is not a lot of cleaning needed as the dataset is complete and pre-cleaned. We will just leave out certain variables from the regression.
 
 ```{r}
 
@@ -50,7 +81,11 @@ spotify <- rbind(spot10, spot00, spot90, spot80, spot70, spot60)
 
 ```
 
+<<<<<<< HEAD
 ## LOGISTIC REGRESSION
+=======
+## Simple Regression Model
+>>>>>>> 77a1fbf53b317c594737959b666d6c11a7fc2e25
 
 ```{r}
 
