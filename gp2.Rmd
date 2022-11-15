@@ -15,6 +15,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 ## About the dataset
 The dataset is called 'The Spotify Hit Predictor Dataset (1960-2019)' and consistes of features for tracks fetched using Spotify's web API. For the sake of the analysis we will focus on the hits from 2010-2019 as we believe that the factors that predict a hit song changed over time. Therefore, more recent data allows for better predictions.
 The variable that we are trying to predict is weather the song was a hit ('1') or a flop ('0'). This classification is determined by the following criteria for a flop:
@@ -70,12 +71,24 @@ spot70$mode <- as.factor(spot70$mode)
 spot60$mode <- as.factor(spot60$mode)
 ```
 
+spot10$decade <- as.factor(spot10$mode)
+spot00$decade <- as.factor(spot00$mode)
+spot90$decade <- as.factor(spot90$mode)
+spot80$decade <- as.factor(spot80$mode)
+spot70$decade <- as.factor(spot70$mode)
+spot60$decade <- as.factor(spot60$mode)
 
+spotify <- rbind(spot10, spot00, spot90, spot80, spot70, spot60)
+
+```
+
+
+## LOGISTIC REGRESSION
 ## Simple Regression Model
 
 ```{r}
 
-model_10 <- glm(target ~ danceability + energy + key + loudness + mode + speechiness + acousticness +
+model_10 <- glm(target ~ danceability + energy + loudness + mode + speechiness + acousticness +
                          instrumentalness + liveness + valence + tempo + duration_ms + time_signature + 
                          chorus_hit + sections, data = spot10, family = "binomial")
 summary(model_10)
@@ -85,6 +98,10 @@ summary(model_10)
 
 ## KNN Model
 
+
+
+## KNN
+
 ```{r}
 
 ```
@@ -92,13 +109,22 @@ summary(model_10)
 
 ## ANN Model
 
+
+
+
+## Decision Tree
+
 ```{r}
 
 ```
-
 
 ## SVM Model
 
+
+
+## SVM
+
 ```{r}
 
 ```
+
