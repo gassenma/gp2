@@ -1,0 +1,19 @@
+---
+title: "ann_file"
+author: "Gino Assenmacher, Nathan Koenig, Johanna Langemeyer, Lukas Resch, Ben Roemer"
+date: "2022-11-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ANN MODEL
+
+```{r}
+
+
+
+```
+
