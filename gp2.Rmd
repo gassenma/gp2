@@ -118,7 +118,6 @@ summary(model_10)
 
 ```
 
-## SVM Model
 
 
 
