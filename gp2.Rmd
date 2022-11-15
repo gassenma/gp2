@@ -39,15 +39,56 @@ spot80$mode <- as.factor(spot80$mode)
 spot70$mode <- as.factor(spot70$mode)
 spot60$mode <- as.factor(spot60$mode)
 
+spot10$decade <- as.factor(spot10$mode)
+spot00$decade <- as.factor(spot00$mode)
+spot90$decade <- as.factor(spot90$mode)
+spot80$decade <- as.factor(spot80$mode)
+spot70$decade <- as.factor(spot70$mode)
+spot60$decade <- as.factor(spot60$mode)
+
+spotify <- rbind(spot10, spot00, spot90, spot80, spot70, spot60)
+
 ```
+
+## LOGISTIC REGRESSION
 
 ```{r}
 
-model_10 <- glm(target ~ danceability + energy + key + loudness + mode + speechiness + acousticness +
+model_10 <- glm(target ~ danceability + energy + loudness + mode + speechiness + acousticness +
                          instrumentalness + liveness + valence + tempo + duration_ms + time_signature + 
                          chorus_hit + sections, data = spot10, family = "binomial")
 summary(model_10)
 
 ```
 
+
+
+
+
+## KNN
+
+```{r}
+
+```
+
+
+
+
+
+
+## Decision Tree
+
+```{r}
+
+```
+
+
+
+
+
+## SVM
+
+```{r}
+
+```
 
