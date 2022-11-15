@@ -13,7 +13,27 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 
+spotify_train <- tele_train_norm
+spotify_test <- tele_test_norm
 
+library(neuralnet)
+  
+ann_model <- neuralnet(formula = yyes ~ ., data = tele_train_ann, hidden = 2)
+
+tele_test_ann$extra <- tele_test_ann$yyes
+tele_test_ann$yyes <- NULL
+names(tele_test_ann)[names(tele_test_ann) == 'extra'] <- "yyes" 
+  
+ann_results <- neuralnet::compute(ann_model, tele_test_ann[1:54])
+  
+predicted_strength <- ann_results$net.result
+  
+prediction_ann <- predict(ann_model, tele_test_ann)
+yyes_prediction <- ifelse(prediction_ann > 0.3, 1, 0)
+  
+cor(predicted_strength, tele_test_ann$yyes)
+
+ann_final <- yyes_prediction
 
 ```
 
