@@ -70,12 +70,12 @@ spot80$mode <- as.factor(spot80$mode)
 spot70$mode <- as.factor(spot70$mode)
 spot60$mode <- as.factor(spot60$mode)
 
-spot10$decade <- as.factor(spot10$mode)
-spot00$decade <- as.factor(spot00$mode)
-spot90$decade <- as.factor(spot90$mode)
-spot80$decade <- as.factor(spot80$mode)
-spot70$decade <- as.factor(spot70$mode)
-spot60$decade <- as.factor(spot60$mode)
+spot10$decade <- as.factor("2010")
+spot00$decade <- as.factor("2000")
+spot90$decade <- as.factor("1990")
+spot80$decade <- as.factor("1980")
+spot70$decade <- as.factor("1970")
+spot60$decade <- as.factor("1960")
 
 spotify <- rbind(spot10, spot00, spot90, spot80, spot70, spot60)
 
@@ -89,10 +89,10 @@ spotify <- rbind(spot10, spot00, spot90, spot80, spot70, spot60)
 
 ```{r}
 
-model_10 <- glm(target ~ danceability + energy + loudness + mode + speechiness + acousticness +
+lmodel <- glm(target ~ danceability + energy + loudness + mode + speechiness + acousticness +
                          instrumentalness + liveness + valence + tempo + duration_ms + time_signature + 
-                         chorus_hit + sections, data = spot10, family = "binomial")
-summary(model_10)
+                         chorus_hit + sections, data = spotify, family = "binomial")
+summary(lmodel)
 
 ```
 
