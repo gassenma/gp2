@@ -21,4 +21,26 @@ spotify_train_norm <- read.csv("spotify_train_norm.csv")
 spotify_test_norm <- read.csv("spotify_test_norm.csv")
 
 ```
+```{r}
+#creating test and train sets
+spotify_train_dt <- spotify_train_norm
+tele_test_dt <- spotify_test_norm
 
+library(C50)
+library(class)
+library(caret)
+library(gmodels)
+
+#Look into doing something with an error cost matrix
+#error_cost <- matrix(c(0, 1, 5, 0), nrow = 2)
+
+spotify_model_dt <- C5.0(spotify_train_norm[-27], as.factor(spotify_train_norm$target),  
+                      trials = 10, control = C5.0Control(minCases = 200))
+spotify_model_dt
+
+plot(spotify_model_dt)
+
+spotify_predict_dt <- predict(spotify_model_dt, spotify_test_norm)
+
+confusionMatrix(as.factor(spotify_predict_dt), as.factor(spotify_test_norm$target), positive = "1")
+```
