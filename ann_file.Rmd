@@ -22,32 +22,45 @@ spotify_test_norm <- read.csv("spotify_test_norm.csv")
 
 ```
 
-
-## ANN MODEL
+## NEURAL NETWORK MODEL
 
 ```{r}
 
-spotify_train_ann <- spotify_train_norm
-spotify_test_ann <- spotify_test_norm
+library(caret)
+library(C50)
+library(irr)
+library(ROCR)
 
-library(neuralnet)
-  
-ann_model <- neuralnet(formula = target ~ ., data = spotify_train_ann, hidden = 2)
+train_ann <- spotify_train
+test_ann <- spotify_test
 
-tele_test_ann$extra <- tele_test_ann$yyes
-tele_test_ann$yyes <- NULL
-names(tele_test_ann)[names(tele_test_ann) == 'extra'] <- "yyes" 
-  
-ann_results <- neuralnet::compute(ann_model, tele_test_ann[1:54])
-  
-predicted_strength <- ann_results$net.result
-  
-prediction_ann <- predict(ann_model, tele_test_ann)
-yyes_prediction <- ifelse(prediction_ann > 0.3, 1, 0)
-  
-cor(predicted_strength, tele_test_ann$yyes)
+train_ann$target <- as.factor(train_ann$target)
+test_ann$target <- as.factor(test_ann$target)
 
-ann_final <- yyes_prediction
+levels(train_ann$target) <- c("first_class", "second_class")
+
+nnetGrid <-  expand.grid(size = seq(from = 1, to = 5, by = 1),
+                        decay = seq(from = 0.1, to = 0.5, by = 0.1))
+
+library(caret)
+set.seed(123)
+ctrl <- trainControl(method = "cv", number = 5, classProbs = TRUE, summaryFunction = twoClassSummary)
+
+ann_model <- train(target ~ ., 
+                            data = train_ann, 
+                            metric = "ROC", 
+                            tuneGrid = nnetGrid, 
+                            method = "nnet",
+                            trControl = ctrl, 
+                            verbose = FALSE,
+                            trace = FALSE)
+
+ann_predictions <- as.data.frame(predict(ann_model, test_ann))
+
+names(ann_predictions)[names(ann_predictions) == "predict(ann_model, test_ann)"] <- "target"
+
+ann_predictions$target <- ifelse(ann_predictions$target == "first_class", 0, 1)
 
 ```
+
 
