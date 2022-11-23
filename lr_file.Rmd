@@ -25,9 +25,7 @@ spotify_test_norm <- read.csv("spotify_test_norm.csv")
 
 ```{r}
 
-lmodel <- glm(target ~ danceability + energy + loudness + mode + speechiness + acousticness +
-                         instrumentalness + liveness + valence + tempo + duration_ms + time_signature + 
-                         chorus_hit + sections, data = spotify, family = "binomial")
+lmodel <- glm(target ~ ., data = spotify, family = "binomial")
 summary(lmodel)
 
 ```
