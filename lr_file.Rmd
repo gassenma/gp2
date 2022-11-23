@@ -1,6 +1,6 @@
 ---
 title: "lr_file"
-author: "Gino Assenmacher"
+author: "Gino Assenmacher, Nathan Koenig, Johanna Langemeyer, Lukas Resch, Ben Roemer"
 date: "2022-11-15"
 output: html_document
 ---
