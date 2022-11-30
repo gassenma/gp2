@@ -1,6 +1,6 @@
 ---
 title: "knn_file"
-author: "Gino Assenmacher, Nathan Koenig, Johanna Langemeyer, Lukas Resch, Ben Roemer"
+author: "Gino Assenmacher"
 date: "2022-11-15"
 output: html_document
 ---
@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(caret)
  library(data.table)
 spotify <- read.csv("spotify.csv")
 spotify_random <- read.csv("spotify_random.csv")
@@ -24,9 +25,19 @@ spotify_norm_total <- rbind(spotify_test_norm, spotify_train_norm)
 
 ```
 
+## Building the Knn-Model
+
+```{r}
+#library(class)
+#library(caret)
+
+#knn_results <- knn(train = spotify_train_norm[,-27], test = #spotify_test_norm[,-27], cl = spotify_train_norm[,27], k = 17)
+
+#confusionMatrix(knn_results, as.factor(spotify_test_norm[,27]), positive = "1")
+```
+
 # Train the model
 ```{r}
-library(caret)
 ## Customizing the tuning process ----
 # use trainControl() to alter resampling strategy
 ctrl <- trainControl(method = "cv", number = 10,
@@ -47,4 +58,5 @@ m <- train(as.factor(target) ~ ., data = spotify_norm_total, method = "knn",
 m
 
 ```
+
 
