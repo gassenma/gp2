@@ -22,3 +22,11 @@ spotify_test_norm <- read.csv("spotify_test_norm.csv")
 
 ```
 
+```{r}
+
+full_predictions <- read.csv("full_predictions.csv")
+
+```
+
+
+
