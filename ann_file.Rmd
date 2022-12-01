@@ -31,11 +31,9 @@ library(C50)
 library(irr)
 library(ROCR)
 
-train_ann <- spotify_train
-test_ann <- spotify_test
+train_ann <- spotify
 
 train_ann$target <- as.factor(train_ann$target)
-test_ann$target <- as.factor(test_ann$target)
 
 levels(train_ann$target) <- c("first_class", "second_class")
 
@@ -55,9 +53,9 @@ ann_model <- train(target ~ .,
                             verbose = FALSE,
                             trace = FALSE)
 
-ann_predictions <- as.data.frame(predict(ann_model, test_ann))
+ann_predictions <- as.data.frame(predict(ann_model, train_ann))
 
-names(ann_predictions)[names(ann_predictions) == "predict(ann_model, test_ann)"] <- "target"
+names(ann_predictions)[names(ann_predictions) == "predict(ann_model, train_ann)"] <- "target"
 
 ann_predictions$target <- ifelse(ann_predictions$target == "first_class", 0, 1)
 
