@@ -14,16 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 # Get data
-spotify <- read.csv("spotify.csv")
-spotify_random <- read.csv("spotify_random.csv")
-spotify_train <- read.csv("spotify_train.csv")
-spotify_test <- read.csv("spotify_test.csv")
-spotify_train_dummy <- read.csv("spotify_train_dummy.csv")
-spotify_test_dummy <- read.csv("spotify_test_dummy.csv")
-
-# Finalize data to use
-spotify_train_norm <- read.csv("spotify_train_norm.csv")
-spotify_test_norm <- read.csv("spotify_test_norm.csv")
+spotify <- read.csv("spotify_norm.csv")
 ```
 
 
@@ -36,7 +27,6 @@ set.seed(300)
 fitControl <- trainControl(method = "cv", number = 10)
 svm_mod <- train(form = as.factor(target) ~ ., data = spotify_train_norm, trControl = fitControl, method = "svmLinear")
 svm_mod
-#summary(mod)
 
 # Obtain predictions
 svm_predictions <- predict(svm_mod, spotify_train_norm, type = "raw")
