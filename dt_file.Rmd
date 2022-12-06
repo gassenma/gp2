@@ -53,6 +53,8 @@ dt_model
 
 dt_predictions <- predict(dt_model, spotify_dt, type = "raw")
 dt_predictions
+dt_predictions <- as.data.frame(dt_predictions)
+dt_predictions
 
 confusionMatrix(as.factor(dt_predictions), as.factor(spotify_dt$target), positive = "1")
 
