@@ -104,6 +104,9 @@ spotify_test_dummy <- as.data.frame(model.matrix(~.,spotify_test))
 spotify_train_norm <- as.data.frame(lapply(spotify_train_dummy, normalize))
 spotify_test_norm <- as.data.frame(lapply(spotify_test_dummy, normalize))
 
+spotify_dummy <- as.data.frame(model.matrix(~.,spotify))
+spotify_norm <- as.data.frame(lapply(spotify_dummy, normalize))
+
 write.csv(spotify, "C:/Users/gasse/Documents/School/to414/gp2/spotify.csv", row.names = FALSE)
 write.csv(spotify_random, "C:/Users/gasse/Documents/School/to414/gp2/spotify_random.csv", row.names = FALSE)
 write.csv(spotify_train, "C:/Users/gasse/Documents/School/to414/gp2/spotify_train.csv", row.names = FALSE)
@@ -112,5 +115,6 @@ write.csv(spotify_train_dummy, "C:/Users/gasse/Documents/School/to414/gp2/spotif
 write.csv(spotify_test_dummy, "C:/Users/gasse/Documents/School/to414/gp2/spotify_test_dummy.csv", row.names = FALSE)
 write.csv(spotify_train_norm, "C:/Users/gasse/Documents/School/to414/gp2/spotify_train_norm.csv", row.names = FALSE)
 write.csv(spotify_test_norm, "C:/Users/gasse/Documents/School/to414/gp2/spotify_test_norm.csv", row.names = FALSE)
+write.csv(spotify_norm, "C:/Users/gasse/Documents/School/to414/gp2/spotify_norm.csv", row.names = FALSE)
 
 ```
