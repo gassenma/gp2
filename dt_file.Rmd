@@ -31,7 +31,7 @@ library(caret)
 library(gmodels)
 
 
-ctrl <- trainControl(method = "repeatedcv",
+ctrl <- trainControl(method = "cv",
                      number = 10, repeats = 10)
 
 grid_c50 <- expand.grid(.model = "tree",
