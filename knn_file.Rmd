@@ -57,6 +57,9 @@ m <- train(as.factor(target) ~ ., data = spotify_norm_total, method = "knn",
            tuneGrid = grid)
 m
 
+
+knn_predict <- predict(m, spotify_train_norm, type = "raw")
+knn_predict
 ```
 
 
