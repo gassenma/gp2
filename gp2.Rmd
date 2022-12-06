@@ -87,11 +87,11 @@ spotify$artist <- NULL
 ```{r}
 
 set.seed(123)
-spotify_random <- spotify[sample(nrow(spotify)),]
+spotify <- spotify[sample(nrow(spotify)),]
 
-spotify_train <- spotify_random[1:(41106/2),] 
+spotify_train <- spotify[1:(41106/2),] 
 
-spotify_test <- spotify_random[((41106/2)+1):nrow(spotify),]
+spotify_test <- spotify[((41106/2)+1):nrow(spotify),]
 
 
 normalize <- function(x) {
@@ -108,7 +108,6 @@ spotify_dummy <- as.data.frame(model.matrix(~.,spotify))
 spotify_norm <- as.data.frame(lapply(spotify_dummy, normalize))
 
 write.csv(spotify, "C:/Users/gasse/Documents/School/to414/gp2/spotify.csv", row.names = FALSE)
-write.csv(spotify_random, "C:/Users/gasse/Documents/School/to414/gp2/spotify_random.csv", row.names = FALSE)
 write.csv(spotify_train, "C:/Users/gasse/Documents/School/to414/gp2/spotify_train.csv", row.names = FALSE)
 write.csv(spotify_test, "C:/Users/gasse/Documents/School/to414/gp2/spotify_test.csv", row.names = FALSE)
 write.csv(spotify_train_dummy, "C:/Users/gasse/Documents/School/to414/gp2/spotify_train_dummy.csv", row.names = FALSE)

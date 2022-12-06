@@ -27,12 +27,12 @@ spotify_test_norm <- read.csv("spotify_test_norm.csv")
 
 fitControl <- trainControl(method = "cv", number = 10)
 
-lmodel <- train(as.factor(target) ~ ., data = spotify_norm_total, method = "glm", trControl = fitControl, family = "binomial")
+lmodel <- train(as.factor(target) ~ ., data = spotify_norm, method = "glm", trControl = fitControl, family = "binomial")
 summary(lmodel)
 
-l_predict <- predict(lmodel, spotify_norm_total, type = "raw")
+l_predict <- predict(lmodel, spotify_norm, type = "raw")
 
-confusionMatrix(as.factor(l_predict), as.factor(spotify_norm_total$target), positive = "1")
+confusionMatrix(as.factor(l_predict), as.factor(spotify_norm$target), positive = "1")
 
 ```
 
