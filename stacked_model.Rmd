@@ -10,16 +10,23 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+# Get separate data
+spotify <- read.csv("spotify")
+lr_predictions <- read.csv("lr_predictions.csv")
+ann_predictions <- read.csv("ann_predictions.csv")
+knn_predictions <- read.csv("knn_predictions.csv")
+svm_predictions <- read.csv("svm_predicitions.csv")
+dt_predictions <- read.csv("dt_predictions.csv")
 
-spotify <- read.csv("spotify.csv")
-spotify_random <- read.csv("spotify_random.csv")
-spotify_train <- read.csv("spotify_train.csv")
-spotify_test <- read.csv("spotify_test.csv")
-spotify_train_dummy <- read.csv("spotify_train_dummy.csv")
-spotify_test_dummy <- read.csv("spotify_test_dummy.csv")
-spotify_train_norm <- read.csv("spotify_train_norm.csv")
-spotify_test_norm <- read.csv("spotify_test_norm.csv")
+# Combine the data
+combined_data <- data.frame(lr_predictions, ann_predictions, knn_predictions, svm_predictions, dt_predictions, spotify$target)
 
+# Change dataframe labels
+colnames(combined_data) <- c('LR','ANN','KNN', 'SVM', 'DT', 'Actual')
+combined_data
+
+# Get data we'll use to test the stacked model on
+TODO
 ```
 
 
