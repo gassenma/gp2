@@ -22,10 +22,26 @@ spotify_test_norm <- read.csv("spotify_test_norm.csv")
 
 ```
 
-```{r}
 
+## Create Stacked Model
+
+```{r}
+# Get combined data
 full_predictions <- read.csv("full_predictions.csv")
 
+# Build the decision tree
+library(caret)
+set.seed(300)
+fitControl <- trainControl(method = "cv", number = 10)
+stacked_mod <- train(form = as.factor(target) ~ ., data = full_predictions, trControl = fitControl, method = "C5.0")
+stacked_mod
+
+# Obtain predictions
+stacked_predictions <- predict(stacked_mod, full_predictions, type = "raw")
+stacked_predictions
+
+# Evaluate model
+confusionMatrix(as.factor(stacked_predictions), as.factor(stacked_data$target), positive = "1")
 ```
 
 
