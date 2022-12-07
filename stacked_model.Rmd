@@ -24,9 +24,6 @@ combined_data <- data.frame(lr_predictions, ann_predictions, knn_predictions, sv
 # Change dataframe labels
 colnames(combined_data) <- c('LR','ANN','KNN', 'SVM', 'DT', 'Actual')
 combined_data
-
-# Get data we'll use to test the stacked model on
-TODO
 ```
 
 
