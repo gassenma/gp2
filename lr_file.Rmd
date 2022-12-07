@@ -10,29 +10,26 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-
-spotify <- read.csv("spotify.csv")
-spotify_random <- read.csv("spotify_random.csv")
-spotify_train <- read.csv("spotify_train.csv")
-spotify_test <- read.csv("spotify_test.csv")
-spotify_train_dummy <- read.csv("spotify_train_dummy.csv")
-spotify_test_dummy <- read.csv("spotify_test_dummy.csv")
-spotify_train_norm <- read.csv("spotify_train_norm.csv")
-spotify_test_norm <- read.csv("spotify_test_norm.csv")
-
+# Get data
+spotify_norm <- read.csv("spotify_norm.csv")
+spotify_norm <- subset(spotify_norm, select = -X.Intercept.)
+spotify_norm
 ```
 
 
 ```{r}
-
+library(caret)
+set.seed(300)
 fitControl <- trainControl(method = "cv", number = 10)
+lr_mod <- train(form = as.factor(target) ~ ., data = spotify_norm, trControl = fitControl, method = "glm", family = "binomial")
+lr_mod
+#summary(mod)
 
-lmodel <- train(as.factor(target) ~ ., data = spotify_norm, method = "glm", trControl = fitControl, family = "binomial")
-summary(lmodel)
+# Obtain predictions
+lr_predictions <- predict(lr_mod, spotify_norm, type = "raw")
+lr_predictions
 
-l_predict <- predict(lmodel, spotify_norm, type = "raw")
-
-confusionMatrix(as.factor(l_predict), as.factor(spotify_norm$target), positive = "1")
-
+# Evaluate model
+confusionMatrix(as.factor(lr_predictions), as.factor(spotify_norm$target), positive = "1")
 ```
 
