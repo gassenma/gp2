@@ -52,4 +52,6 @@ dt_predictions
 
 confusionMatrix(as.factor(dt_predictions), as.factor(spotify_dt$target), positive = "1")
 
+write.csv(dt_predictions, "C:/Users/gasse/Documents/School/to414/gp2/dt_predictions.csv", row.names = FALSE)
+
 ```
