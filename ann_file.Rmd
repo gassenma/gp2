@@ -59,6 +59,8 @@ names(ann_predictions)[names(ann_predictions) == "predict(ann_model, train_ann)"
 
 ann_predictions$target <- ifelse(ann_predictions$target == "first_class", 0, 1)
 
+write.csv(ann_predictions, "C:/Users/gasse/Documents/School/to414/gp2/ann_predictions.csv", row.names = FALSE)
+
 ```
 
 
