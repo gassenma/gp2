@@ -32,6 +32,9 @@ svm_mod
 svm_predictions <- predict(svm_mod, spotify_train_norm, type = "raw")
 svm_predictions
 
+# Write predictions to CSV
+write.csv(spotify, "C:/Users/gasse/Documents/School/to414/gp2/svm_predictions.csv", row.names = FALSE)
+
 # Evaluate model
 confusionMatrix(as.factor(svm_predictions), as.factor(spotify_train_norm$target), positive = "1")
 ```
