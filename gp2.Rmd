@@ -84,6 +84,10 @@ spotify$artist <- NULL
 
 ```
 
+
+## Writing the data to CSV files
+We want to write this cleaned data to CSV files so that we can use it to create the LR model, ANN model, KNN model, SVM model, DT model, and final DT Stacked model.
+
 ```{r}
 
 set.seed(123)
