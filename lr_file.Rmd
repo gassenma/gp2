@@ -29,6 +29,9 @@ lr_mod
 lr_predictions <- predict(lr_mod, spotify_norm, type = "raw")
 lr_predictions
 
+# Write predictions to CSV
+write.csv(spotify, "C:/Users/gasse/Documents/School/to414/gp2/lr_predictions.csv", row.names = FALSE)
+
 # Evaluate model
 confusionMatrix(as.factor(lr_predictions), as.factor(spotify_norm$target), positive = "1")
 ```
