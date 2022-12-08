@@ -21,7 +21,8 @@ spotify_test_dummy <- read.csv("spotify_test_dummy.csv")
 spotify_train_norm <- read.csv("spotify_train_norm.csv")
 spotify_test_norm <- read.csv("spotify_test_norm.csv")
 
-spotify_norm_total <- rbind(spotify_test_norm, spotify_train_norm)
+spotify_norm <- read.csv("spotify_norm.csv")
+spotify_norm$X.Intercept. <- NULL
 
 ```
 
@@ -30,16 +31,10 @@ spotify_norm_total <- rbind(spotify_test_norm, spotify_train_norm)
 ```{r}
 #library(class)
 #library(caret)
-
-#knn_results <- knn(train = spotify_train_norm[,-27], test = #spotify_test_norm[,-27], cl = spotify_train_norm[,27], k = 17)
-
-#confusionMatrix(knn_results, as.factor(spotify_test_norm[,27]), positive = "1")
 ```
 
 # Train the model
 ```{r}
-## Customizing the tuning process ----
-# use trainControl() to alter resampling strategy
 ctrl <- trainControl(method = "cv", number = 10,
                      selectionFunction = "oneSE", repeats = 10)
 
@@ -51,15 +46,17 @@ grid
 
 # customize train() with the control list and grid of parameters 
 set.seed(300)
-m <- train(as.factor(target) ~ ., data = spotify_norm_total, method = "knn",
+m <- train(as.factor(target) ~ ., data = spotify_norm, method = "knn",
            metric = "Kappa",
            trControl = ctrl,
            tuneGrid = grid)
 m
 
 
-knn_predict <- predict(m, spotify_train_norm, type = "raw")
-knn_predict
+knn_predictions <- predict(m, spotify_norm, type = "raw")
+
+write.csv(knn_predictions, "C:/Users/gasse/Documents/School/to414/gp2/knn_predictions.csv", row.names = FALSE)
+
 ```
 
 
