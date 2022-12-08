@@ -51,9 +51,9 @@ spotify_final_dt <- C5.0(train[-6], as.factor(train$Actual),
 
 spotify_final_dt
 
-spotify_final_predict <- predict(spotify_final_dt, test, type = "raw")
+spotify_final_predict <- predict(spotify_final_dt, test)
 
-confusionMatrix(as.factor(spotify_final_predict), as.factor(stacked_data$target), positive = "1")
+confusionMatrix(as.factor(spotify_final_predict), as.factor(test$Actual), positive = "1")
 
 ```
 
