@@ -24,10 +24,9 @@ svm_train <- read.csv("spotify_norm.csv")
 # Create model
 library(caret)
 set.seed(300)
-fitControl <- trainControl(method = "cv", number = 10)
+fitControl <- trainControl(method = "cv", number = 5)
 svm_train$X.Intercept. <- NULL
 svm_mod <- train(form = as.factor(target) ~ ., data = svm_train, trControl = fitControl, method = "svmLinear")
-svm_mod
 
 # Obtain predictions
 svm_predictions <- predict(svm_mod, svm_train, type = "raw")
