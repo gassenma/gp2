@@ -10,29 +10,31 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-# Get data
-spotify_norm <- read.csv("spotify_norm.csv")
-spotify_norm <- subset(spotify_norm, select = -X.Intercept.)
-spotify_norm
+
+spotify <- read.csv("spotify.csv")
+spotify_random <- read.csv("spotify_random.csv")
+spotify_train <- read.csv("spotify_train.csv")
+spotify_test <- read.csv("spotify_test.csv")
+spotify_train_dummy <- read.csv("spotify_train_dummy.csv")
+spotify_test_dummy <- read.csv("spotify_test_dummy.csv")
+spotify_train_norm <- read.csv("spotify_train_norm.csv")
+spotify_test_norm <- read.csv("spotify_test_norm.csv")
+
 ```
 
 
 ```{r}
-library(caret)
-set.seed(300)
+
 fitControl <- trainControl(method = "cv", number = 10)
-lr_mod <- train(form = as.factor(target) ~ ., data = spotify_norm, trControl = fitControl, method = "glm", family = "binomial")
-lr_mod
-#summary(mod)
 
-# Obtain predictions
-lr_predictions <- predict(lr_mod, spotify_norm, type = "raw")
-lr_predictions
+lmodel <- train(as.factor(target) ~ ., data = spotify_norm, method = "glm", trControl = fitControl, family = "binomial")
+summary(lmodel)
 
-# Write predictions to CSV
-write.csv(spotify, "C:/Users/gasse/Documents/School/to414/gp2/lr_predictions.csv", row.names = FALSE)
+lr_predictions <- predict(lmodel, spotify_norm, type = "raw")
 
-# Evaluate model
 confusionMatrix(as.factor(lr_predictions), as.factor(spotify_norm$target), positive = "1")
+
+write.csv(lr_predictions, "C:/Users/gasse/Documents/School/to414/gp2/lr_predictions.csv", row.names = FALSE)
+
 ```
 
