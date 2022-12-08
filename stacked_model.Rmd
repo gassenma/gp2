@@ -11,11 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 # Get separate data
-spotify <- read.csv("spotify")
+spotify <- read.csv("spotify.csv")
 lr_predictions <- read.csv("lr_predictions.csv")
 ann_predictions <- read.csv("ann_predictions.csv")
 knn_predictions <- read.csv("knn_predictions.csv")
-svm_predictions <- read.csv("svm_predicitions.csv")
+svm_predictions <- read.csv("svm_predictions.csv")
 dt_predictions <- read.csv("dt_predictions.csv")
 
 # Combine the data
@@ -31,7 +31,7 @@ combined_data
 
 ```{r}
 # Get combined data
-full_predictions <- read.csv("full_predictions.csv")
+full_predictions <- combined_data
 
 # Build the decision tree
 library(caret)
@@ -42,6 +42,9 @@ train  <- combined_data[sample, ]
 test   <- combined_data[!sample, ]
 
 error_cost <- matrix(c(0, 1, 5.5, 0), nrow = 2)
+
+library(C50)
+library(class)
 
 spotify_final_dt <- C5.0(train[-6], as.factor(train$Actual),  
                       trials = 10, costs = error_cost)
