@@ -38,4 +38,3 @@ write.csv(spotify, "C:/Users/gasse/Documents/School/to414/gp2/svm_predictions.cs
 # Evaluate model
 confusionMatrix(as.factor(svm_predictions), as.factor(svm_train$target), positive = "1")
 ```
-
