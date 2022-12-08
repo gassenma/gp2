@@ -31,7 +31,9 @@ library(C50)
 library(irr)
 library(ROCR)
 
-train_ann <- spotify
+train_ann <- spotify_norm
+
+train_ann$X.Intercept. <- NULL
 
 train_ann$target <- as.factor(train_ann$target)
 
