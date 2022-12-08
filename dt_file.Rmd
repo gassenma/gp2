@@ -52,6 +52,8 @@ dt_predictions
 dt_predictions <- as.data.frame(dt_predictions)
 dt_predictions
 
+dt_predictions <- ifelse(dt_predictions > 0.5, 1, 0)
+
 confusionMatrix(as.factor(dt_predictions), as.factor(spotify_dt$target), positive = "1")
 
 write.csv(dt_predictions, "/Users/benjaminroemer/Desktop/TO 414/gp2New/dt_predictions.csv", row.names = FALSE)
