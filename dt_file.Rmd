@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Dealing with Data
 spotify <- read.csv("spotify_norm.csv")
+spotify <- subset(spotify, select = -X.Intercept.) 
+
 
 ```
 ```{r}
@@ -52,6 +54,6 @@ dt_predictions
 
 confusionMatrix(as.factor(dt_predictions), as.factor(spotify_dt$target), positive = "1")
 
-write.csv(dt_predictions, "C:/Users/gasse/Documents/School/to414/gp2/dt_predictions.csv", row.names = FALSE)
+write.csv(dt_predictions, "/Users/benjaminroemer/Desktop/TO 414/gp2New/dt_predictions.csv", row.names = FALSE)
 
 ```
