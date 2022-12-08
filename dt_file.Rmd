@@ -10,52 +10,32 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-
 #Dealing with Data
-spotify <- read.csv("spotify_norm.csv")
-spotify <- subset(spotify, select = -X.Intercept.) 
-
-
+spotify_norm <- read.csv("spotify_norm.csv")
+spotify_norm <- subset(spotify_norm, select = -X.Intercept.)
+spotify_norm
 ```
+
+
 ```{r}
-#creating test and train sets
-spotify_dt <- spotify
-
-library(C50)
-library(class)
+# Create model
 library(caret)
-library(gmodels)
-
-
-ctrl <- trainControl(method = "cv",
-                     number = 10, repeats = 10)
-
+set.seed(300)
+fitControl <- trainControl(method = "cv", number = 10, repeats = 10)
 grid_c50 <- expand.grid(.model = "tree",
                         .trials = c(10, 20, 30, 40),
                         .winnow = "FALSE")
+dt_mod <- train(form = as.factor(target) ~ ., data = spotify_norm, trControl = fitControl, tuneGrid = grid_c50, method = "C5.0", metric = "Kappa")
+dt_mod
+#summary(mod)
 
-set.seed(300)
-
-dt_model <- train(as.factor(target) ~ ., 
-                            data = spotify_dt, 
-                            metric = "Kappa", 
-                            tuneGrid = grid_c50, 
-                            method = "C5.0",
-                            trControl = ctrl, 
-                            verbose = FALSE,
-                            trace = FALSE)
-
-dt_model
-
-dt_predictions <- predict(dt_model, spotify_dt, type = "raw")
-dt_predictions
-dt_predictions <- as.data.frame(dt_predictions)
+# Obtain predictions
+dt_predictions <- predict(dt_mod, spotify_norm, type = "raw")
 dt_predictions
 
-dt_predictions <- ifelse(dt_predictions > 0.5, 1, 0)
+# Evaluate model
+confusionMatrix(as.factor(dt_predictions), as.factor(spotify_norm$target), positive = "1")
 
-confusionMatrix(as.factor(dt_predictions), as.factor(spotify_dt$target), positive = "1")
-
-write.csv(dt_predictions, "/Users/benjaminroemer/Desktop/TO 414/gp2New/dt_predictions.csv", row.names = FALSE)
-
+# Write predictions to CSV file
+write.csv(dt_predictions, "/Users/nathankoenig/Desktop/dt_predictions.csv", row.names = FALSE)
 ```
